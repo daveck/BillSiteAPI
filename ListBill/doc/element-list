@@ -1,0 +1,6 @@
+com.selman.billrec
+com.selman.billrec.config
+com.selman.billrec.controller
+com.selman.billrec.exception
+com.selman.billrec.model
+com.selman.billrec.repository
