@@ -5,13 +5,10 @@ import com.selman.billrec.model.BillRecord;
 import com.selman.billrec.repository.BillRecordRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -22,13 +19,13 @@ public class BillRecordController {
     @Autowired
     BillRecordRepository billRecordRepository;
 
-    @PostMapping("/bills/billRecords")
+    @PostMapping("/billRecords")
     public BillRecord createBillRecords(@Valid @RequestBody BillRecord billRecord) {
         return billRecordRepository.save(billRecord);
     }
     
     // REMOVE
-    @GetMapping("/bills/billRecords")
+    @GetMapping("/billRecords")
     public List<BillRecord> getAllBillRecords() {
         return billRecordRepository.findAll();
     }
@@ -51,19 +48,9 @@ public class BillRecordController {
         BillRecord billRecord = billRecordRepository.findById(billRecordPk)
                 .orElseThrow(() -> new ResourceNotFoundException("BillRecord", "billRecordPk", billRecordPk));
         
-        billRecord.setBillFk(billRecordDetails.getBillFk());
+        billRecord.setModUser(billRecordDetails.getModUser());
         billRecord.setEmployeeName(billRecordDetails.getEmployeeName());
         billRecord.setEmployeeId(billRecordDetails.getEmployeeId());
-        billRecord.setSingleDeductionAmount(billRecordDetails.getSingleDeductionAmount());
-        billRecord.setTotalDeductionAmount(billRecordDetails.getTotalDeductionAmount());
-        billRecord.setPreviousBilledAmount(billRecord.getPreviousBilledAmount());
-        billRecord.setBilledAmount(billRecordDetails.getBilledAmount());
-        billRecord.setProductCode(billRecordDetails.getProductCode());
-        billRecord.setCreditAmount(billRecordDetails.getCreditAmount());
-        billRecord.setEmployerProvided(billRecordDetails.getEmployerProvided());
-        billRecord.setCoverageEffectiveDate(billRecordDetails.getCoverageEffectiveDate());
-        billRecord.setBilledToDate(billRecordDetails.getBilledToDate());
-        billRecord.setSortCode(billRecordDetails.getSortCode());
         billRecord.setUpdateStatusTypeCd(billRecordDetails.getUpdateStatusTypeCd());
 
         BillRecord updatedBillRecords = billRecordRepository.save(billRecord);

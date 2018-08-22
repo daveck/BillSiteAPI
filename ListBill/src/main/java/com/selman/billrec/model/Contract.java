@@ -42,11 +42,9 @@ public class Contract extends AuditModel {
 
 	private String coverage;
 
-	private BigDecimal singleDeductionAmount;
+	private BigDecimal deductionAmount;
 
-	private BigDecimal totalDeductionAmount;
-
-	private BigDecimal previousBillAmount;
+	private BigDecimal billAmount;
 
 	private BigDecimal creditAmount;
 

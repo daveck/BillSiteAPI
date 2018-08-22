@@ -33,6 +33,11 @@ public class PaymentController {
                 .orElseThrow(() -> new ResourceNotFoundException("Payment", "paymentPk", paymentPk));
     }
 
+    @GetMapping("bills/{billFk}/payments")
+    public List<Payment> getPaymentByBillFk(@PathVariable(value = "id") Long billFk) {
+        return paymentRepository.findByBillFkOrderByPaymentDateDesc(billFk);
+    }
+
     @PutMapping("/payments/{id}")
     public Payment updatePayment(@PathVariable(value = "id") Long paymentPk,
                                             @Valid @RequestBody Payment paymentDetails) {
@@ -40,10 +45,8 @@ public class PaymentController {
         Payment payment = paymentRepository.findById(paymentPk)
                 .orElseThrow(() -> new ResourceNotFoundException("Payment", "paymentPk", paymentPk));
 
-        payment.setBillFk(paymentDetails.getBillFk());
-        payment.setPaymentMethodCd(paymentDetails.getPaymentMethodCd());
+        payment.setModUser(paymentDetails.getModUser());
         payment.setPaymentStatusCd(paymentDetails.getPaymentStatusCd());
-        payment.setPaymentAmount(paymentDetails.getPaymentAmount());
         Payment updatedPayment = paymentRepository.save(payment);
         return updatedPayment;
     }

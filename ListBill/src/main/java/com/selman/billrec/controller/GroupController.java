@@ -52,15 +52,10 @@ public class GroupController {
         Group group = groupRepository.findById(groupPk)
                 .orElseThrow(() -> new ResourceNotFoundException("Group", "groupPk", groupPk));
 
-        group.setCaseFk(groupDetails.getCaseFk());
-        group.setBranding(groupDetails.getBranding());
-        group.setGroupNumber(groupDetails.getGroupNumber());
+        group.setModUser(groupDetails.getModUser());
         group.setGroupName(groupDetails.getGroupName());
-        group.setEffectiveDate(groupDetails.getEffectiveDate());
-        group.setTerminationDate(groupDetails.getTerminationDate());
-    //    group.setGroupSettings(groupDetails.getGroupSettings());
-        group.setAddress(groupDetails.getAddress());
         group.setRep(groupDetails.getRep());
+        group.setTerminationDate(groupDetails.getTerminationDate());
 
         Group updatedGroup = groupRepository.save(group);
         return updatedGroup;

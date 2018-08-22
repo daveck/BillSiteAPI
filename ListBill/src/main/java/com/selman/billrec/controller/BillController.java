@@ -62,15 +62,8 @@ public class BillController {
         Bill bill = billRepository.findById(billPk)
                 .orElseThrow(() -> new ResourceNotFoundException("Bill", "billPk", billPk));
 
-        bill.setGroupFk(billDetails.getGroupFk());
-        bill.setSubGroupFk(billDetails.getSubGroupFk());
-        bill.setInvoiceNumber(billDetails.getInvoiceNumber());
         bill.setBillStatusTypeCd(billDetails.getBillStatusTypeCd());
         bill.setBillingModeTypeCd(billDetails.getBillingModeTypeCd());
-        bill.setCurrentAmountDue(billDetails.getCurrentAmountDue());
-        bill.setPreviousAmountDue(billDetails.getPreviousAmountDue());
-        bill.setBillDate(billDetails.getBillDate());
-        bill.setBillDueDate(billDetails.getBillDueDate());
 
         Bill updatedBill = billRepository.save(bill);
         return updatedBill;

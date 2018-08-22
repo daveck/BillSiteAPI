@@ -52,22 +52,22 @@ public class ContractController {
         Contract contract = contractRepository.findById(contractPk)
                 .orElseThrow(() -> new ResourceNotFoundException("Contract", "contractPk", contractPk));
 
-        contract.setBillRecordFk(contractDetails.getBillRecordFk());
-        contract.setProductTypeCd(contractDetails.getProductTypeCd());
-        contract.setInsuredFullName(contractDetails.getInsuredFullName());
-        contract.setInsuredFirstName(contractDetails.getInsuredFirstName());
-        contract.setInsuredLastName(contractDetails.getInsuredLastName());
-        contract.setContractNumber(contractDetails.getContractNumber());
-        contract.setCoverage(contractDetails.getCoverage());
-        contract.setSingleDeductionAmount(contractDetails.getSingleDeductionAmount());
-        contract.setTotalDeductionAmount(contractDetails.getTotalDeductionAmount());
-        contract.setPreviousBillAmount(contractDetails.getPreviousBillAmount());
-        contract.setCreditAmount(contractDetails.getCreditAmount());
+        //contract.setProductTypeCd(contractDetails.getProductTypeCd());
+        //contract.setInsuredFullName(contractDetails.getInsuredFullName());
+        //contract.setInsuredFirstName(contractDetails.getInsuredFirstName());
+        //contract.setInsuredLastName(contractDetails.getInsuredLastName());
+        //contract.setContractNumber(contractDetails.getContractNumber());
+        //contract.setCoverage(contractDetails.getCoverage());
+        //contract.setSingleDeductionAmount(contractDetails.getSingleDeductionAmount());
+        //contract.setTotalDeductionAmount(contractDetails.getTotalDeductionAmount());
+        //contract.setPreviousBillAmount(contractDetails.getPreviousBillAmount());
+        //contract.setCreditAmount(contractDetails.getCreditAmount());
         contract.setUpdateStatusCd(contractDetails.getUpdateStatusCd());
-        contract.setNumber_of_deductions(contractDetails.getNumber_of_deductions());
-        contract.setSortCode(contractDetails.getSortCode());
+        //contract.setNumber_of_deductions(contractDetails.getNumber_of_deductions());
+        //contract.setSortCode(contractDetails.getSortCode());
         contract.setNotes(contractDetails.getNotes());
-        contract.setSourceSystemCd(contractDetails.getSourceSystemCd());
+        contract.setModUser(contractDetails.getModUser());
+        //contract.setSourceSystemCd(contractDetails.getSourceSystemCd());
 
         Contract updatedContracts = contractRepository.save(contract);
         return updatedContracts;

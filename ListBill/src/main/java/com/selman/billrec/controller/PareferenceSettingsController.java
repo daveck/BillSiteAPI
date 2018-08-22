@@ -40,6 +40,7 @@ public class PareferenceSettingsController {
         PreferenceSettings preferenceSettings = preferenceSettingsRepository.findById(preferenceSettingsPk)
                 .orElseThrow(() -> new ResourceNotFoundException("PreferenceSettings", "preferenceSettingsPk", preferenceSettingsPk));
 
+        preferenceSettings.setModUser(preferenceSettingsDetails.getModUser());
         preferenceSettings.setGroupFk(preferenceSettingsDetails.getGroupFk());
         preferenceSettings.setPreferenceType(preferenceSettingsDetails.getPreferenceType());
         preferenceSettings.setEnabled(preferenceSettingsDetails.getEnabled());

@@ -39,7 +39,6 @@ public class Group extends AuditModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long groupPk;
 
-	@NotBlank
 	private Long caseFk;
     	
 	@OneToOne
@@ -60,10 +59,8 @@ public class Group extends AuditModel {
     @JoinColumn(name = "rep_fk")
 	private Rep rep;
 
-	@NotBlank
 	private String groupNumber;
 
-	@NotBlank
 	private String groupName;
 
 	@Temporal(TemporalType.DATE)

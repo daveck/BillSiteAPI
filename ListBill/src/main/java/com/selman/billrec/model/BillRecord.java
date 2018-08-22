@@ -10,11 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.Formula;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,14 +39,14 @@ public class BillRecord extends AuditModel {
 
 	private String employeeId;
 
-	private BigDecimal singleDeductionAmount;
 
-	private BigDecimal totalDeductionAmount;
+	@Formula(value = "(select sum(c.deduction_amount) from CONTRACT c where c.bill_record_fk = bill_record_pk)") 
+	private BigDecimal deductionAmount;
 
-	private BigDecimal previousBilledAmount;
+	@Formula(value = "(select sum(c.bill_amount) from CONTRACT c where c.bill_record_fk = bill_record_pk)") 
+	private BigDecimal billAmount;
 
-	private BigDecimal billedAmount;
-
+	@Formula(value = "(select sum(c.credit_amount) from CONTRACT c where c.bill_record_fk = bill_record_pk)") 
 	private BigDecimal creditAmount;
 
 	private BigDecimal billedToDate;

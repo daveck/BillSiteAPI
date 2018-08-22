@@ -17,6 +17,5 @@ public interface BillRecordRepository extends JpaRepository<BillRecord, Long>  {
 	List<BillRecord> findByBillFkOrderByEmployeeIdAsc(Long billFk);
 	//Page<BillRecord> findByBillFk(Long billFk, Pageable pageable);
 
-	
 
 }
